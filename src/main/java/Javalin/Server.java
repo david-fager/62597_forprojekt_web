@@ -1,26 +1,20 @@
+package Javalin;
+
 import io.javalin.Javalin;
 import java_common.rmi.IConnectionHandlerRMI;
 
-import java.rmi.Naming;
-
-public class Javalin {
-    private io.javalin.Javalin app = null;
+public class Server {
+    private Javalin app = null;
     private IConnectionHandlerRMI javaprogram = null;
     private int sessionID = 0;
 
-    public static void main(String[] args) {
-        Javalin javalin = new Javalin();
-        javalin.setupJavalin();
-        javalin.webUserPaths();
-    }
-
-    private void setupJavalin() {
+    public void setupJavalin() {
         if (app != null) {
             return;
         }
 
         // Starts the server
-        app = io.javalin.Javalin.create(javalinConfig -> javalinConfig.addStaticFiles("webapp")).start(42069);
+        app = Javalin.create(javalinConfig -> javalinConfig.addStaticFiles("webapp")).start(42069);
 
         // This happens before every call to the REST backend
         app.before(ctx -> {
@@ -38,7 +32,7 @@ public class Javalin {
          */
     }
 
-    private void webUserPaths() {
+    public void webUserPaths() {
 
         //Login
         String userName = "";
