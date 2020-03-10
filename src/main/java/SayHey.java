@@ -6,6 +6,7 @@ import java.rmi.Naming;
 public class SayHey {
     private Javalin app = null;
     private IConnectionHandlerRMI javaprogram = null;
+    private int sessionID = 0;
 
     public static void main(String[] args) {
         SayHey sayHey = new SayHey();
@@ -26,12 +27,15 @@ public class SayHey {
             System.out.println("Received: " + ctx.method()+" on " + ctx.url());
         });
 
+        /*
         // This is the connection via RMI to the javaprogram
         try {
             javaprogram = (IConnectionHandlerRMI) Naming.lookup("rmi://localhost:9920/hangman_local");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+         */
     }
 
     private void webUserPaths() {
@@ -39,14 +43,25 @@ public class SayHey {
         // A test GET to send a message with REST
         String hej = "Hej fra java-delen (javalin)";
         app.get("/hej", context -> {
-            String temp = javaprogram.getWord(0);
+            //String temp = javaprogram.getWord(0);
             context.json(hej);
         });
 
         // A test GET to change site
-        app.get("/site2", context -> {
+        app.get("/send", context -> {
             System.out.println("Rendered index2.html");
             context.render("webapp/index2.html");
+        });
+
+        app.get("/send/:brugernavn", context -> {
+            String dab = context.pathParam("brugernavn");
+            String dab2 = context.queryParam("adgangskode");
+            if (dab != null) {
+                System.out.println(dab);
+            }
+            if (dab2 != null) {
+                System.out.println(dab2);
+            }
         });
 
     }
