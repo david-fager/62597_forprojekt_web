@@ -1,0 +1,136 @@
+.header{
+    font-family: Bahnschrift;
+    width: 200px;
+    position: relative;
+    top: 70px;
+    left: 525px;
+}
+
+.introduction {
+    width: 190px;
+    position: relative;
+    top: 70px;
+    left: 520px;
+    font-size: smaller;
+}
+
+.start_button{
+    background-color: white;
+    border-color: white;
+    border-radius: 0px;
+    width: 155px;
+    height: 30px;
+    position: relative;
+    top: 90px;
+    left: 525px;
+}
+
+.start_button:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.logud_button{
+    background-color: white;
+    border-color: white;
+    border-radius: 0px;
+    width: 155px;
+    height: 30px;
+    position: relative;
+    top: 90px;
+    left: 525px;
+}
+
+.logud_button:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.konto_button{
+    background-color: white;
+    border-color: white;
+    border-radius: 0px;
+    width: 155px;
+    height: 30px;
+    position: relative;
+    top: 90px;
+    left: 525px;
+}
+
+.konto_button:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.email-field{
+    width: 200px;
+    position:relative;
+    top: 80px;
+    left: 525px;
+}
+
+.button{
+    position: relative;
+    top: 90px;
+    left: 525px;
+    background-color: white;
+    border-radius: 0px;
+    width: 165px;
+    height: 30px;
+    cursor:pointer;
+}
+
+.login{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    font-family: Bahnschrift;
+    position: relative;
+    top: 90px;
+    left: 525px;
+    background-color: white;
+    border-radius: 0px;
+    width: 165px;
+    height: 30px;
+}
+
+.button:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.login:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.email-field{
+    font-family: Bahnschrift;
+    width: 200px;
+    position:relative;
+    top: 70px;
+    left: 525px;
+}
+.password-field{
+    font-family: Bahnschrift;
+    width: 200px;
+    position: relative;
+    top: 85px;
+    left: 525px;
+}
+
+.glemt{
+    font-family: Bahnschrift;
+    position: relative;
+    top: 80px;
+    left: 525px;
+    font-size: smaller;
+    cursor:pointer;
+}
+
+
