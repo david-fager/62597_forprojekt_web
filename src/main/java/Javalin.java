@@ -3,15 +3,15 @@ import java_common.rmi.IConnectionHandlerRMI;
 
 import java.rmi.Naming;
 
-public class SayHey {
-    private Javalin app = null;
+public class Javalin {
+    private io.javalin.Javalin app = null;
     private IConnectionHandlerRMI javaprogram = null;
     private int sessionID = 0;
 
     public static void main(String[] args) {
-        SayHey sayHey = new SayHey();
-        sayHey.setupJavalin();
-        sayHey.webUserPaths();
+        Javalin javalin = new Javalin();
+        javalin.setupJavalin();
+        javalin.webUserPaths();
     }
 
     private void setupJavalin() {
@@ -20,7 +20,7 @@ public class SayHey {
         }
 
         // Starts the server
-        app = Javalin.create(javalinConfig -> javalinConfig.addStaticFiles("webapp")).start(42069);
+        app = io.javalin.Javalin.create(javalinConfig -> javalinConfig.addStaticFiles("webapp")).start(42069);
 
         // This happens before every call to the REST backend
         app.before(ctx -> {
@@ -39,6 +39,15 @@ public class SayHey {
     }
 
     private void webUserPaths() {
+
+        //Login
+        String userName = "";
+        String password = "";
+        app.get("/login", context -> {
+            sessionID = javaprogram.informConnect();
+            boolean temp = javaprogram.login(0, userName, password);
+            context.json(temp);
+        });
 
         // A test GET to send a message with REST
         String hej = "Hej fra java-delen (javalin)";
