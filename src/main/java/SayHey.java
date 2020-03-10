@@ -1,9 +1,12 @@
 import io.javalin.Javalin;
+import java_common.rmi.IConnectionHandlerRMI;
 
 import java.io.*;
+import java.rmi.Naming;
 
 public class SayHey {
     private Javalin app = null;
+    private IConnectionHandlerRMI javaprogram = null;
 
     public static void main(String[] args) {
         SayHey sayHey = new SayHey();
@@ -17,7 +20,7 @@ public class SayHey {
         }
 
         // Starts the server
-        app = Javalin.create().start(8080);
+        app = Javalin.create().start(42069);
 
         // Sets the root to render the index page
         app.get("/", context -> {
@@ -36,6 +39,12 @@ public class SayHey {
         app.before(ctx -> {
             System.out.println("Received: " + ctx.method()+" on " + ctx.url());
         });
+
+        try {
+            javaprogram = (IConnectionHandlerRMI) Naming.lookup("rmi://localhost:9920/hangman_local");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void webUserPaths() {
@@ -43,7 +52,8 @@ public class SayHey {
         // A test GET to send a message with REST
         String hej = "Hej fra java-delen (javalin)";
         app.get("/hej", context -> {
-            context.json(hej);
+            String temp = javaprogram.getWord(0);
+            context.json(hej + temp);
         });
 
         // A test GET to change site
