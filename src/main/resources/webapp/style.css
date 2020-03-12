@@ -1,4 +1,19 @@
+.img{
+    position: relative;
+    top: 70px;
+    left: 585px;
+
+}
+
 .header{
+    font-family: Bahnschrift;
+    width: 200px;
+    position: relative;
+    top: 70px;
+    left: 525px;
+}
+
+.header2{
     font-family: Bahnschrift;
     width: 200px;
     position: relative;
@@ -14,7 +29,7 @@
     font-size: smaller;
 }
 
-.start_button{
+.list_button{
     background-color: white;
     border-color: white;
     border-radius: 0px;
@@ -25,41 +40,7 @@
     left: 525px;
 }
 
-.start_button:hover{
-    background-color: black;
-    color: white;
-    cursor:pointer;
-}
-
-.logud_button{
-    background-color: white;
-    border-color: white;
-    border-radius: 0px;
-    width: 155px;
-    height: 30px;
-    position: relative;
-    top: 90px;
-    left: 525px;
-}
-
-.logud_button:hover{
-    background-color: black;
-    color: white;
-    cursor:pointer;
-}
-
-.konto_button{
-    background-color: white;
-    border-color: white;
-    border-radius: 0px;
-    width: 155px;
-    height: 30px;
-    position: relative;
-    top: 90px;
-    left: 525px;
-}
-
-.konto_button:hover{
+.list_button:hover{
     background-color: black;
     color: white;
     cursor:pointer;
