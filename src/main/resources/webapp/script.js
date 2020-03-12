@@ -1,4 +1,3 @@
-let sessionID;
 let hejNumber = 0;
 
 // For GETting specific website data from java REST
@@ -18,16 +17,16 @@ function login() {
         .then((response) => response.status)
         .then(function (data) {
             console.log(data);
-            if (data === 200) {
+            if (data === 202) {
                 window.location.href='/menu';
             }
         });
 }
 
 function sendData() {
-    let brugernavn = document.getElementById("brugernavn").value
-    let adgangskode = document.getElementById("adgangskode").value
-    fetch("/send/" + brugernavn + "?adgangskode=" + adgangskode)
+    let tekst1 = document.getElementById("tekst1").value
+    let tekst2 = document.getElementById("tekst2").value
+    fetch("/send/" + tekst1 + "?tekst2=" + tekst2)
         .then((response) => response.json())
         .then(function (data) {
             console.log(data);

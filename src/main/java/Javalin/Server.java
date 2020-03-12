@@ -49,39 +49,50 @@ public class Server {
 
     public void webUserPaths() {
 
-        // The login page - gives the session id via a cookie
+        // PAGE: MAIN (LOGIN) - skips the login screen if the user is recognised by cookie
         app.get("/", context -> {
-            int sesID;
             if (context.cookieStore("sessionID") != null) {
-                sesID = context.cookieStore("sessionID");
-            } else {
-                sesID = javaprogram.informConnect();
-            }
-            context.cookieStore("sessionID", sesID);
-            context.render("webapp/index.html");
-        });
-
-        // The path for when user clicks the 'login' button
-        app.get("/login/:username", context -> {
-            if (context.cookieStore("sessionID") == null) {
-                context.status(HttpStatus.BAD_REQUEST_400);
+                System.out.println(getTime() + "User recognized as sessionID: " + context.cookieStore("sessionID") + " redirecting to /menu");
+                context.render("webapp/index2.html");
                 return;
             }
 
-            int sesID = context.cookieStore("sessionID");
+            context.render("webapp/index.html");
+        });
+
+        // BUTTON: LOGIN - checks credentials and gives id via cookie if success
+        app.get("/login/:username", context -> {
+            int sesID = javaprogram.informConnect();
             String username = context.pathParam("username");
             String password = context.queryParam("password");
+
             boolean success = javaprogram.login(sesID, username, password);
             if (success) {
-                System.out.println(getTime() + "login success");
-                context.status(HttpStatus.OK_200);
+                System.out.println(getTime() + "Login success");
+                context.cookieStore("sessionID", sesID);
+                context.status(HttpStatus.ACCEPTED_202);
             } else {
-                System.out.println(getTime() + "login failed");
+                System.out.println(getTime() + "Login failed");
                 context.status(HttpStatus.UNAUTHORIZED_401);
             }
         });
 
-        // For an authorized user to see the menu
+        // PAGE: FORGOT PASSWORD - loads/renders the page for forgotten password
+        app.get("/login/forgot", context -> {
+            context.render("webapp/forgot.html");
+        });
+
+        // BUTTON: FORGOT PASSWORD - sends the forgot password request to the java program
+        app.get("/login/forgot/:username", context -> {
+            String username = context.pathParam("username");
+            String message = context.queryParam("message");
+            if (message == null) {
+                message = "";
+            }
+            javaprogram.forgotPassword(username, message);
+        });
+
+        // PAGE: MENU - if the user is authorized to view it, then it renders the menu page otherwise a 401 error
         app.get("/menu", context -> {
             if (context.cookieStore("sessionID") == null) {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
@@ -91,8 +102,45 @@ public class Server {
             context.render("webapp/index2.html");
         });
 
+
         //
         app.get("/hangman", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr/:guess", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr/usedLetters", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr/visibleWord", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr/actualWord", context -> {
+
+        });
+
+        //
+        app.get("/hangman/:dr/result", context -> {
+
+        });
+
+
+        //
+        app.get("/account", context -> {
 
         });
 
@@ -119,9 +167,9 @@ public class Server {
         });
 
         // A test to GET with parameters
-        app.get("/send/:brugernavn", context -> {
-            String dab = context.pathParam("brugernavn");
-            String dab2 = context.queryParam("adgangskode");
+        app.get("/send/:tekst1", context -> {
+            String dab = context.pathParam("tekst1");
+            String dab2 = context.queryParam("tekst2");
             if (dab != null) {
                 System.out.println(dab);
             }
