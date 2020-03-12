@@ -1,5 +1,6 @@
 package Javalin;
 
+import brugerautorisation.data.Bruger;
 import io.javalin.Javalin;
 import java_common.rmi.IConnectionHandlerRMI;
 import org.eclipse.jetty.http.HttpStatus;
@@ -53,7 +54,19 @@ public class Server {
         app.get("/", context -> {
             if (context.cookieStore("sessionID") != null) {
                 System.out.println(getTime() + "User recognized as sessionID: " + context.cookieStore("sessionID") + " redirecting to /menu");
-                context.render("webapp/index2.html");
+                context.redirect("/menu");
+                return;
+            }
+
+            context.redirect("/login");
+        });
+
+
+        // PAGE: LOGIN - the login screen is rendered if the user is not recognised by cookie
+        app.get("/login", context -> {
+            if (context.cookieStore("sessionID") != null) {
+                System.out.println(getTime() + "User recognized as sessionID: " + context.cookieStore("sessionID") + " redirecting to /menu");
+                context.redirect("/menu");
                 return;
             }
 
@@ -82,15 +95,22 @@ public class Server {
             context.render("webapp/forgot.html");
         });
 
-        // BUTTON: FORGOT PASSWORD - sends the forgot password request to the java program
+        // BUTTON: FORGOT PASSWORD - sends the request for forgotten password
         app.get("/login/forgot/:username", context -> {
             String username = context.pathParam("username");
             String message = context.queryParam("message");
             if (message == null) {
                 message = "";
             }
-            javaprogram.forgotPassword(username, message);
+
+            boolean success = javaprogram.forgotPassword(username, message);
+            if (success) {
+                context.status(HttpStatus.OK_200);
+            } else {
+                context.status(HttpStatus.SERVICE_UNAVAILABLE_503);
+            }
         });
+
 
         // PAGE: MENU - if the user is authorized to view it, then it renders the menu page otherwise a 401 error
         app.get("/menu", context -> {
@@ -103,49 +123,76 @@ public class Server {
         });
 
 
-        //
+        // PAGE: HANGMAN MODE - a page to show the game modes
         app.get("/hangman", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
 
+            context.render("webapp/modeSelection.html");
+        });
+
+        // PAGE: HANGMAN GAME
+        app.get("/hangman/:mode", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
+
+            String mode = context.pathParam("mode");
+            if (mode.equals("dr")) {
+                context.render("webapp/hangmanDr.html");
+            } else if (mode.equals("standard")) {
+                context.render("webapp/hangmanStd.html");
+            } else {
+                context.status(HttpStatus.BAD_REQUEST_400).result("<h1>400 Bad Request</h1>Check the request vs the servers expectation.").contentType("text/html");
+            }
+        });
+
+        // BUTTON: GUESS -
+        app.get("/hangman/:mode/:guess", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
+
+            // TODO: Mangler
         });
 
         //
-        app.get("/hangman/:dr", context -> {
+        app.get("/hangman/:mode/result", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
 
-        });
-
-        //
-        app.get("/hangman/:dr/:guess", context -> {
-
-        });
-
-        //
-        app.get("/hangman/:dr/usedLetters", context -> {
-
-        });
-
-        //
-        app.get("/hangman/:dr/visibleWord", context -> {
-
-        });
-
-        //
-        app.get("/hangman/:dr/actualWord", context -> {
-
-        });
-
-        //
-        app.get("/hangman/:dr/result", context -> {
-
+            // TODO: Mangler
         });
 
 
-        //
+        // PAGE: ACCOUNT - a page to view account info and send a change password request
         app.get("/account", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
 
+            int sesID = context.cookieStore("sessionID");
+            Bruger fullAccount = javaprogram.getFullUser(sesID);
+            Bruger pubAccount = javaprogram.getPublicUser(sesID);
+            Bruger[] users = {fullAccount, pubAccount};
+            context.json(users);
         });
 
-        //
-        app.get("/account", context -> {
+        // BUTTON: CHANGE PASSWORD REQUEST - the path to send a form to change password
+        app.get("/account/changePassword", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
+
+            // TODO: Mangler
 
         });
 

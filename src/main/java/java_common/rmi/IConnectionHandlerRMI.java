@@ -27,7 +27,7 @@ public interface IConnectionHandlerRMI extends java.rmi.Remote {
 
     boolean didPlayerWin(int sesID) throws java.rmi.RemoteException;
 
-    Bruger getFullUser(int sesID, String password) throws java.rmi.RemoteException;
+    Bruger getFullUser(int sesID) throws java.rmi.RemoteException;
 
     Bruger changePassword(int sesID, String oldPassword, String newPassword) throws java.rmi.RemoteException;
 
