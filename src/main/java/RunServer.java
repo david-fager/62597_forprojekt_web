@@ -6,6 +6,9 @@ public class RunServer {
         Server server = new Server();
         server.setupJavalin();
         server.webUserPaths();
+
+        // Initialises the examples of javascript and javalin communication
+        server.examples();
     }
 
 }

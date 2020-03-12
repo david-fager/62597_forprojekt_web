@@ -1,3 +1,4 @@
+let sessionID;
 let hejNumber = 0;
 
 // For GETting specific website data from java REST
@@ -7,6 +8,19 @@ function getHej() {
         .then(function (data) {
             console.log(data);
             document.getElementById("response").innerHTML = data + " " + ++hejNumber;
+        });
+}
+
+function login() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    fetch("/login/" + username + "?password=" + password)
+        .then((response) => response.status)
+        .then(function (data) {
+            console.log(data);
+            if (data === 200) {
+                window.location.href='/menu';
+            }
         });
 }
 
