@@ -8,6 +8,7 @@ import org.eclipse.jetty.http.HttpStatus;
 import java.rmi.Naming;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Server {
@@ -140,14 +141,53 @@ public class Server {
                 return;
             }
 
+            int sesID = context.cookieStore("sessionID");
+            boolean success;
+
             String mode = context.pathParam("mode");
             if (mode.equals("dr")) {
-                context.render("webapp/hangmanDr.html");
+                success = javaprogram.startGame(sesID, 1);
+                if (success) {
+                    context.render("webapp/hangmanDr.html");
+                }
             } else if (mode.equals("standard")) {
-                context.render("webapp/hangmanStd.html");
+                success = javaprogram.startGame(sesID, 2);
+                if (success) {
+                    context.render("webapp/hangmanStd.html");
+                }
             } else {
                 context.status(HttpStatus.BAD_REQUEST_400).result("<h1>400 Bad Request</h1>Check the request vs the servers expectation.").contentType("text/html");
+                return;
             }
+
+            if (!success) {
+                context.status(HttpStatus.SERVICE_UNAVAILABLE_503).result("<h1>503 Service Unavailable</h1>The server experienced and error. Contact system admin").contentType("text/html");
+            }
+        });
+
+        // CALL: GAMEINFO - collect and receive the info about the game
+        app.get("/hangman/:mode/info", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
+
+            int sesID = context.cookieStore("sessionID");
+            String visibleWord = javaprogram.getVisibleWord(sesID);
+            String actualWord = javaprogram.getWord(sesID);
+
+            // Build the string of used letters (a, b, c)
+            ArrayList<String> letters = javaprogram.getUsedLetters(sesID);
+            String usedletters = "";
+            if (letters.size() > 0) {
+                for (int i = 0; i < letters.size() - 1; i++) {
+                    usedletters += (letters.get(i) + ",");
+                }
+                usedletters = letters.get(letters.size() - 1);
+            }
+
+            String[] info = {visibleWord, usedletters, actualWord};
+            context.json(info);
         });
 
         // BUTTON: GUESS -
@@ -156,6 +196,7 @@ public class Server {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
                 return;
             }
+
 
             // TODO: Mangler
         });
