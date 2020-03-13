@@ -1,3 +1,22 @@
+.login-page{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+
+#login-page-content{
+    position: fixed;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+}
+
+#login-page-content h4{
+    margin-bottom: 5px;
+}
+
+
+
 .page{
     position: fixed;
     height: 100vh;
