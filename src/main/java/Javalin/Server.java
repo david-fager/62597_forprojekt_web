@@ -71,7 +71,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/index.html");
+            context.render("webapp/login.html");
         });
 
         // BUTTON: LOGIN - checks credentials and gives id via cookie if success
@@ -120,7 +120,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/index2.html");
+            context.render("webapp/startside.html");
         });
 
 
@@ -131,7 +131,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/modeSelection.html");
+            context.render("webapp/mode.html");
         });
 
         // PAGE: HANGMAN GAME
@@ -148,12 +148,12 @@ public class Server {
             if (mode.equals("dr")) {
                 success = javaprogram.startGame(sesID, 1);
                 if (success) {
-                    context.render("webapp/hangmanDr.html");
+                    context.render("webapp/spil.html");
                 }
             } else if (mode.equals("standard")) {
                 success = javaprogram.startGame(sesID, 2);
                 if (success) {
-                    context.render("webapp/hangmanStd.html");
+                    context.render("webapp/spil.html");
                 }
             } else {
                 context.status(HttpStatus.BAD_REQUEST_400).result("<h1>400 Bad Request</h1>Check the request vs the servers expectation.").contentType("text/html");
