@@ -132,7 +132,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/modeSpil.html"); // TODO: Ret til siden med mode selection
+            context.render("webapp/modeSpil.html");
         });
 
         // PAGE: HANGMAN GAME
@@ -198,8 +198,14 @@ public class Server {
                 return;
             }
 
-
-            // TODO: Mangler
+            int sesID = context.cookieStore("sessionID");
+            String guess = context.pathParam("guess");
+            boolean success = javaprogram.guessLetter(sesID, guess);
+            if (success) {
+                context.status(HttpStatus.ACCEPTED_202);
+            } else {
+                context.status(HttpStatus.CONFLICT_409);
+            }
         });
 
         //
@@ -244,37 +250,13 @@ public class Server {
                 return;
             }
 
-            // TODO: Mangler
+            int sesID = context.cookieStore("sessionID");
+            String oldPassword = context.queryParam("oldPassword");
+            String newPassword = context.queryParam("newPassword");
+
+            Bruger result = javaprogram.changePassword(sesID, oldPassword, newPassword);
+            context.json(result);
         });
 
     }
-
-    // Examples of how to use the javascript fetch and javalin app
-    public void examples() {
-        // A test GET to send a message with REST
-        String hej = "Hej fra java-delen (javalin)";
-        app.get("/hej", context -> {
-            //String temp = javaprogram.getWord(0);
-            context.json(hej);
-        });
-
-        // A test GET to change site
-        app.get("/send", context -> {
-            System.out.println("Rendered index2.html");
-            context.render("webapp/index2.html");
-        });
-
-        // A test to GET with parameters
-        app.get("/send/:tekst1", context -> {
-            String dab = context.pathParam("tekst1");
-            String dab2 = context.queryParam("tekst2");
-            if (dab != null) {
-                System.out.println(dab);
-            }
-            if (dab2 != null) {
-                System.out.println(dab2);
-            }
-        });
-    }
-
 }
