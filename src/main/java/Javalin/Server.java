@@ -93,7 +93,7 @@ public class Server {
 
         // PAGE: FORGOT PASSWORD - loads/renders the page for forgotten password
         app.get("/login/forgot", context -> {
-            context.render("webapp/forgot.html");
+            context.render("webapp/glemtLogin.html");
         });
 
         // BUTTON: FORGOT PASSWORD - sends the request for forgotten password
@@ -131,7 +131,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/mode.html");
+            context.render("webapp/mode.html"); // TODO: Ret til siden med mode selection
         });
 
         // PAGE: HANGMAN GAME
@@ -219,6 +219,16 @@ public class Server {
                 return;
             }
 
+            context.render("/kontoIndstillinger.html");
+        });
+
+        // CALL: ACCOUNT INFO - get the information on the given account
+        app.get("/account/info", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+                return;
+            }
+
             int sesID = context.cookieStore("sessionID");
             Bruger fullAccount = javaprogram.getFullUser(sesID);
             Bruger pubAccount = javaprogram.getPublicUser(sesID);
@@ -234,7 +244,6 @@ public class Server {
             }
 
             // TODO: Mangler
-
         });
 
     }
