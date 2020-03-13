@@ -1,31 +1,54 @@
-.img{
-    position: relative;
-    top: 70px;
-    left: 585px;
+.page{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+}
 
+.mid{
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.davidprutprutprut{
+    width: 500px;
+    height: 100px;
+}
+
+.login_container{
+    width: 100%;
+}
+
+.img{
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%,0);
+    display: inline-block;
 }
 
 .header{
+    left: 50%;
+    text-align: center;
+    position: fixed;
+    transform: translate(-50%,0);
     font-family: Bahnschrift;
-    width: 200px;
-    position: relative;
-    top: 70px;
-    left: 525px;
+    display: inline-block;
 }
 
 .header2{
     font-family: Bahnschrift;
     width: 200px;
-    position: relative;
-    top: 70px;
-    left: 525px;
 }
 
+
 .introduction {
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%,0);
     width: 190px;
-    position: relative;
-    top: 70px;
-    left: 520px;
     font-size: smaller;
 }
 
@@ -35,9 +58,6 @@
     border-radius: 0px;
     width: 155px;
     height: 30px;
-    position: relative;
-    top: 90px;
-    left: 525px;
 }
 
 .list_button:hover{
@@ -46,21 +66,17 @@
     cursor:pointer;
 }
 
-.email-field{
-    width: 200px;
-    position:relative;
-    top: 80px;
-    left: 525px;
-}
-
 .button{
-    position: relative;
-    top: 90px;
-    left: 525px;
     background-color: white;
     border-radius: 0px;
     width: 165px;
     height: 30px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background-color: black;
+    color: white;
     cursor:pointer;
 }
 
@@ -69,20 +85,12 @@
     -moz-appearance: button;
     appearance: button;
     font-family: Bahnschrift;
-    position: relative;
-    top: 90px;
-    left: 525px;
     background-color: white;
     border-radius: 0px;
     width: 165px;
     height: 30px;
 }
 
-.button:hover{
-    background-color: black;
-    color: white;
-    cursor:pointer;
-}
 
 .login:hover{
     background-color: black;
@@ -93,23 +101,14 @@
 .email-field{
     font-family: Bahnschrift;
     width: 200px;
-    position:relative;
-    top: 70px;
-    left: 525px;
 }
 .password-field{
     font-family: Bahnschrift;
     width: 200px;
-    position: relative;
-    top: 85px;
-    left: 525px;
 }
 
 .glemt{
     font-family: Bahnschrift;
-    position: relative;
-    top: 80px;
-    left: 525px;
     font-size: smaller;
     cursor:pointer;
 }
