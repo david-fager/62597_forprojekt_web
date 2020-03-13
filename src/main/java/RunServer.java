@@ -14,9 +14,6 @@ public class RunServer {
         server.setupJavalin();
         server.webUserPaths();
 
-        // Initialises the examples of javascript and javalin communication
-        server.examples();
-
         RunServer.printASCII();
 
         System.out.println(df.format(Calendar.getInstance().getTimeInMillis()) + "Server started");
