@@ -34,3 +34,13 @@ function sendData() {
             console.log(data);
         });
 }
+
+function forgotlogin() {
+    let username = document.getElementById("username").value;
+    let message = document.getElementById("message").value;
+    fetch("/login/forgot/" + username + "?message=" + message)
+        .then((response) => response.status)
+        .then(function (data) {
+            console.log(data);
+        });
+}

@@ -85,6 +85,7 @@ public class Server {
                 System.out.println(getTime() + "Login success");
                 context.cookieStore("sessionID", sesID);
                 context.status(HttpStatus.ACCEPTED_202);
+                context.render("webapp/startside.html");
             } else {
                 System.out.println(getTime() + "Login failed");
                 context.status(HttpStatus.UNAUTHORIZED_401);
