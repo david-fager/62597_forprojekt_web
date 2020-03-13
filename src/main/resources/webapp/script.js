@@ -60,3 +60,20 @@ function drGame() {
 function standardGame() {
     window.location.href = '/hangman/standard';
 }
+
+function changePassword() {
+
+}
+
+function getUserInfo() {
+    fetch('/account/info')
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+
+            document.getElementById("BPBI").innerHTML = data[0].brugernavn;
+            document.getElementById("APBI").innerHTML = data[0].adgangskode;
+            document.getElementById("BOBI").innerHTML = data[1].brugernavn;
+            document.getElementById("AOBI").innerText = data[1].adgangskode;
+        });
+}

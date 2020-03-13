@@ -3,8 +3,9 @@
     <meta charset="UTF-8">
     <title>GAGLELEG</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="script.js"></script>
 </head>
-<body>
+<body onload="getUserInfo()">
 <img class="img" src="hangman_logo.png" height="35" width="35" >
 <h1 class="header">
     GALGELEG
@@ -12,36 +13,37 @@
 <h4 class="header2">
     - Konto indstillinger -
 </h4>
-<form action="XXX" method="post">
-
-    <div>
-        <button class="list_button">Hent bruger</button>
-    </div>
-</form>
-<br>
-<form action="XXX" method="post">
-    <div>
-        <button class="list_button">Skift kode</button>
-    </div>
+<form action="javascript:changePassword()">
+    <p>Skift adgangskode</p>
+    <label>Skriv gamle kode</label>
+    <br>
+    <input type="text" name="oldPassword" id="username" required>
+    <br>
+    <label>Skriv ny kode</label>
+    <br>
+    <input type="password" name="newPassword" id="password" required>
+    <br>
+    <button class="list_button">Ændre</button>
     <br>
 </form>
-<form action="" method="post">
     <div>
-        <button class="list_button">Glemt kode</button>
+        <label>Privat bruger information</label>
+        <br>
+        Brugernavn: <a id="BPBI"></a>
+        <br>
+        Adgangskode: <a id="APBI"></a>
     </div>
     <br>
-</form>
-<form action="" method="post">
     <div>
-        <button class="list_button">Offenlig bruger</button>
+        <label>Offenlig bruger information</label>
+        <br>
+        Brugernavn: <a id="BOBI"></a>
+        <br>
+        Adgangskode: <a id="AOBI"></a>
     </div>
-    <br>
-</form>
-<form action="" method="post">
     <div>
         <button class="list_button">Log ud</button>
     </div>
     <br>
-</form>
 </body>
 </html>
