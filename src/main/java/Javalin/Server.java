@@ -132,7 +132,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/mode.html"); // TODO: Ret til siden med mode selection
+            context.render("webapp/modeSpil.html"); // TODO: Ret til siden med mode selection
         });
 
         // PAGE: HANGMAN GAME
@@ -220,7 +220,7 @@ public class Server {
                 return;
             }
 
-            context.render("/kontoIndstillinger.html");
+            context.render("webapp/kontoIndstillinger.html");
         });
 
         // CALL: ACCOUNT INFO - get the information on the given account

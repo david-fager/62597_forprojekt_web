@@ -44,3 +44,19 @@ function forgotlogin() {
             console.log(data);
         });
 }
+
+function accountSettings() {
+    window.location.href='/account';
+}
+
+function typeGame() {
+    window.location.href = '/hangman';
+}
+
+function drGame() {
+    window.location.href = '/hangman/dr';
+}
+
+function standardGame() {
+    window.location.href = '/hangman/standard';
+}

@@ -3,32 +3,26 @@
     <meta charset="UTF-8">
     <title>GAGLELEG</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="script.js"></script>
 </head>
 <body>
 <img class="img" src="hangman_logo.png" height="35" width="35" >
-<h1 class="header">
-    GALGELEG
-</h1>
-<p class="introduction">
-    Velkommen til Galgeleg spillet.
-</p>
-<form action="spil.html" method="post">
-
-    <div>
-        <button class="list_button">Start Spil</button>
+<div class="page">
+    <div id="login-page-content">
+        <h1>Galgeleg</h1>
+        <h4> Velkommen til Galgeleg spillet.</h4>
+        <div>
+            <button class="list_button" onclick="typeGame()">Start Spil</button>
+        </div>
+        <br>
+        <div>
+            <button class="list_button" onclick="accountSettings()">Konto indstillinger</button>
+        </div>
+        <br>
+        <div>
+            <button class="list_button" onclick="">Log ud</button>
+        </div>
     </div>
-</form>
-<br>
-<form action="kontoIndstillinger.html" method="post">
-    <div>
-        <button class="list_button">Konto indstillinger</button>
-    </div>
-    <br>
-</form>
-<form action="" method="post">
-    <div>
-        <button class="list_button">Log ud</button>
-    </div>
-</form>
+</div>
 </body>
 </html>
