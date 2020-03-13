@@ -19,6 +19,8 @@ function login() {
             console.log(data);
             if (data === 202) {
                 window.location.href='/menu';
+            } else if (data === 401) {
+                document.getElementById("login-error").innerHTML = "Forkert brugernavn eller adgangskode.";
             }
         });
 }
