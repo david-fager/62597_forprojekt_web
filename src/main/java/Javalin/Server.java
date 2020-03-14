@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Server {
-    private final boolean DEBUGMODE = true;
+    private final boolean DEBUGMODE = false;
     private Javalin app = null;
     private IConnectionHandlerRMI javaprogram = null;
     private DateFormat df = new SimpleDateFormat("[dd-MM-yyyy HH:mm:ss] ");
@@ -228,8 +228,6 @@ public class Server {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
                 return;
             }
-
-            System.out.println("yessir!");
 
             context.render("webapp/endGame.html");
         });
