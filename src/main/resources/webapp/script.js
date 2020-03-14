@@ -105,6 +105,31 @@ function gameInfo() {
             if (data[4] === "true"){
                 endgame();
             }
+
+            switch(data[3]) {
+                case "1":
+                    document.getElementById('image').src = '/./webresources/hangman3.png';
+                    break;
+                case "2":
+                    document.getElementById('image').src = '/./webresources/hangman5.png';
+                    break;
+                case "3":
+                    document.getElementById('image').src = '/./webresources/hangman5_1.png';
+                    break;
+                case "4":
+                    document.getElementById('image').src = '/./webresources/hangman6.png';
+                    break;
+                case "5":
+                    document.getElementById('image').src = '/./webresources/hangman7.png';
+                    break;
+                case "6":
+                    document.getElementById('image').src = '/./webresources/hangman8.png';
+                    break;
+                case "7":
+                    document.getElementById('image').src = '/./webresources/hangman_gameover.png';
+                    break;
+            }
+
         });
 }
 
@@ -137,5 +162,5 @@ function guess() {
             gameInfo();
             // TODO: Handle the status code for whether server had problems or not
         });
-    document.getElementById("guess").value = "";
+    document.getElementById("letter").value = "";
 }

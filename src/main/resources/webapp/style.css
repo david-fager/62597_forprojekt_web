@@ -9,6 +9,7 @@
     left: 50%;
     top: 35%;
     transform: translate(-50%, -50%);
+    font-family: Bahnschrift;
 }
 
 #login-page-content h4{
@@ -16,14 +17,15 @@
 }
 
 #login-page-content h1{
-    left: 50%;
-    font-family: Bahnschrift;
+    left: 500px;
+    width: 100%;
+    text-align: center;
 }
 
 #login-page-content h2{
-    left: 50%;
     font-size: small;
-    font-family: Bahnschrift;
+    width: 100%;
+    text-align: center;
 }
 
 .mid{
@@ -45,10 +47,10 @@
 }
 
 .img{
-    left: 40%;
-    top: 0;
+    left: 50%;
+    top: 10%;
     position: fixed;
-    transform: translate(-50%,0);
+    transform: translate(-50%,-50%);
     display: inline-block;
 }
 
@@ -216,4 +218,8 @@
     margin-bottom: 15px;
 }
 
+#image{
+    width: 300px;
+    height: 300px;
+}
 
