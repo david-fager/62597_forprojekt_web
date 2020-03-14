@@ -7,6 +7,8 @@ import java.util.ArrayList;
 @SuppressWarnings("NonAsciiCharacters")
 public interface IConnectionHandlerRMI extends java.rmi.Remote {
 
+    boolean idRecognized(int sesID) throws java.rmi.RemoteException;
+
     boolean login(int sesID, String username, String password) throws java.rmi.RemoteException;
 
     boolean startGame(int sesID, int i) throws Exception;
