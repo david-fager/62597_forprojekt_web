@@ -19,7 +19,7 @@ public interface IConnectionHandlerRMI extends java.rmi.Remote {
 
     ArrayList<String> getUsedLetters(int sesID) throws java.rmi.RemoteException;
 
-    int numberWrongGuesses(int sesID);
+    int numberWrongGuesses(int sesID) throws java.rmi.RemoteException;
 
     String getWord(int sesID) throws java.rmi.RemoteException;
 
