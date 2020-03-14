@@ -137,6 +137,7 @@ function showresult() {
             } else {
                 document.getElementById("results").innerText = "tabt";
             }
+            document.getElementById("word").innerText = data[2];
         });
 
 }

@@ -15,19 +15,28 @@
     </div>
     <div class="hangman_right">
         <div class="hidden_word">
-            Ord som skal gættes: <a id="guess"></a>
+            Ord som skal gættes:
+            <br>
+            <a id="guess"></a>
+            <br>
             <br>
         </div>
         <div class="guess_word">
             <label>Gæt ét bogstav</label>
+            <input class="guessinput" type="text" name="guess_word" id="letter" maxlength="1" required>
             <br>
-            <input type="text" name="guess_word" id="letter" maxlength="1" required>
             <br>
-            <button id="guess1" class="list_button" onclick="guess()">Gæt</button>
+            <button class="list_button" onclick="guess()">Gæt</button>
+            <br>
             <br>
         </div>
         <div class="word_used">
-            Bogstav som er brugt: <a id="used"></a>
+            Bogstav som er brugt:
+            <br>
+            <a id="used"></a>
+            <br>
+            <br>
+            <button class="list_button" onclick="menu()">Tilbage til startside</button>
         </div>
     </div>
 </div>

@@ -100,7 +100,7 @@ public class Server {
                 context.cookieStore("galgelegCookieStore");
                 context.cookie("sessionID", String.valueOf(sesID));
                 context.status(HttpStatus.ACCEPTED_202);
-                context.render("webapp/startside.html");
+                context.render("webapp/startSide.html");
             } else {
                 System.out.println(getTime() + "Login failed");
                 context.status(HttpStatus.UNAUTHORIZED_401);
@@ -136,7 +136,7 @@ public class Server {
                 return;
             }
 
-            context.render("webapp/startside.html");
+            context.render("webapp/startSide.html");
         });
 
 

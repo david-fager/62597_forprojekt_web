@@ -6,21 +6,27 @@
     <script src="/./script.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1 id="forgot-header">GALGELEG</h1>
+<div class="page">
+    <div id="login-page-content">
+        <img class="img" src="/./webresources/hangman_logo.png" height="35" width="35">
+        <br>
+        <br>
+        <h1>Galgeleg</h1>
+        <h2>- Glemt kode -</h2>
     <form action="javascript:forgotlogin()">
-        <a>Skriv din email herunde, og du vil få en mail tilsendt.</a>
+        <a id="text">Skriv dit brugernavn herunder, og du vil få en mail tilsendt.</a>
         <br>
         <br>
         <label><b>Brugernavn</b></label>
         <br>
-        <input id="username2" type="text" placeholder="Skriv dit brugernavn" name="uname" required>
+        <input class="input" id="username2" type="text" placeholder="Skriv dit brugernavn" name="uname" required>
         <br>
         <br>
         <div>
-            <button type="submit" class="button">Send</button>
+            <button type="submit" class="list_button">Send</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>

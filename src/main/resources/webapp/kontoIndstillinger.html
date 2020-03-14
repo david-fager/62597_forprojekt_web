@@ -6,28 +6,29 @@
     <script src="/./script.js"></script>
 </head>
 <body onload="getUserInfo()">
-<img class="img" src="/./webresources/hangman_logo.png" height="35" width="35" >
-<h1 class="header">
-    GALGELEG
-</h1>
-<h4 class="header2">
-    - Konto indstillinger -
-</h4>
+<div class="page">
+    <div id="login-page-content">
+        <img class="img" src="/./webresources/hangman_logo.png" height="35" width="35">
+        <br>
+        <br>
+        <h1>Galgeleg</h1>
+        <h2>- Konto indstillinger -</h2>
 <form action="javascript:changePassword()">
-    <p>Skift adgangskode</p>
-    <label>Skriv gamle kode</label>
+    _____________________________
+    <p class="skiftadgangskode">Skift adgangskode</p>
+    <label class="text_style ">Skriv gamle kode:</label>
+    <input class="input" type="text" name="oldPassword" id="oldpassword" required>
     <br>
-    <input type="text" name="oldPassword" id="oldpassword" required>
+    <label class="text_style">Skriv ny kode:</label>
     <br>
-    <label>Skriv ny kode</label>
-    <br>
-    <input type="password" name="newPassword" id="newpassword" required>
+    <input class="input" type="password" name="newPassword" id="newpassword" required>
     <br>
     <button class="list_button">Ændre</button>
     <br>
+    _____________________________
+    <br>
 </form>
-    <div>
-        <label>Privat bruger information</label>
+        <label class="text_style">Privat bruger information</label>
         <br>
         Brugernavn: <a id="BPBI"></a>
         <br>
@@ -35,15 +36,17 @@
         <div class="showpassword">SKJULT
             <span id="APBI"></span>
         </div>
-    </div>
+    <br>
     <br>
     <div>
-        <label>Offenlig bruger information</label>
+        <label class="text_style">Offenlig bruger information</label>
         <br>
         Brugernavn: <a id="BOBI"></a>
         <br>
-        Adgangskode: <a id="AOBI"></a>
+        Adgangskode: <a class="italic" id="AOBI"></a>
     </div>
     <br>
+</div>
+</div>
 </body>
 </html>
