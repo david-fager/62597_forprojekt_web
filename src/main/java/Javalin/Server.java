@@ -216,24 +216,7 @@ public class Server {
             context.json(info);
         });
 
-        // BUTTON: GUESS -
-        app.get("/hangman/:mode/:guess", context -> {
-            if (context.cookieStore("sessionID") == null) {
-                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
-            }
-
-            int sesID = context.cookieStore("sessionID");
-            String guess = context.pathParam("guess");
-            boolean success = javaprogram.guessLetter(sesID, guess);
-            if (success) {
-                System.out.println(getTime() + "User successfully guessed on: " + guess);
-                context.status(HttpStatus.ACCEPTED_202);
-            } else {
-                context.status(HttpStatus.CONFLICT_409);
-            }
-        });
-
-        //
+        // PAGE: HANGMAN RESULT - gets the result of the game
         app.get("/hangman/:mode/result", context -> {
             if (context.cookieStore("sessionID") == null) {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
@@ -242,6 +225,23 @@ public class Server {
             System.out.println("yessir!");
 
             context.render("webapp/endGame.html");
+        });
+
+        // BUTTON: GUESS -
+        app.get("/hangman/:mode/guess/:letter", context -> {
+            if (context.cookieStore("sessionID") == null) {
+                context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
+            }
+
+            int sesID = context.cookieStore("sessionID");
+            String guess = context.pathParam("letter");
+            boolean success = javaprogram.guessLetter(sesID, guess);
+            if (success) {
+                System.out.println(getTime() + "User successfully guessed on: " + guess);
+                context.status(HttpStatus.ACCEPTED_202);
+            } else {
+                context.status(HttpStatus.CONFLICT_409);
+            }
         });
 
 

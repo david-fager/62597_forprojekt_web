@@ -97,8 +97,9 @@ function gameInfo() {
 }
 
 function showresult() {
-
-    fetch(window.location.href+'../info')
+    let path = window.location.href;
+    path = path.replace("/result", "/info");
+    fetch(path)
         .then((response) => response.json())
         .then(function (data) {
             console.log(data);
@@ -118,7 +119,7 @@ function endgame() {
 
 function guess() {
     let guess = document.getElementById("letter").value;
-    fetch(window.location.href + '/' + guess)
+    fetch(window.location.href + '/guess/' + guess)
         .then((response) => response.status)
         .then(function (data) {
             console.log(data);
