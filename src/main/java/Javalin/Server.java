@@ -207,9 +207,9 @@ public class Server {
             String usedletters = "";
             if (letters.size() > 0) {
                 for (int i = 0; i < letters.size() - 1; i++) {
-                    usedletters += (letters.get(i) + ",");
+                    usedletters += (letters.get(i) + ", ");
                 }
-                usedletters = letters.get(letters.size() - 1);
+                usedletters += letters.get(letters.size() - 1);
             }
 
             String[] info = {visibleWord, usedletters, actualWord, numberWrongGuesses, isGameOver, didPlayerWin};
@@ -226,6 +226,7 @@ public class Server {
             String guess = context.pathParam("guess");
             boolean success = javaprogram.guessLetter(sesID, guess);
             if (success) {
+                System.out.println(getTime() + "User successfully guessed on: " + guess);
                 context.status(HttpStatus.ACCEPTED_202);
             } else {
                 context.status(HttpStatus.CONFLICT_409);
@@ -238,7 +239,9 @@ public class Server {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
             }
 
-            // TODO: Mangler
+            System.out.println("yessir!");
+
+            context.render("webapp/endGame.html");
         });
 
 

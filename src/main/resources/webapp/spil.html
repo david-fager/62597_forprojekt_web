@@ -2,15 +2,33 @@
 <head>
     <meta charset="UTF-8">
     <title>GALGELEG</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="script.js"></script>
+    <link href="/./style.css" rel="stylesheet" type="text/css">
+    <script src="/./script.js"></script>
 </head>
-<body>
+<body onload="gameInfo()">
 <div class="page">
-    <div id="login-page-content">
+    <div id="game_page">
         <h1>Galgeleg</h1>
-        <h2>jegopdaterer</h2>
-
+    </div>
+    <div class="hangman_left">
+        <img src="/./webresources/hangman1.png">
+    </div>
+    <div class="hangman_right">
+        <div class="hidden_word">
+            Ord som skal gættes: <a id="guess"></a>
+            <br>
+        </div>
+        <div class="guess_word">
+            <label>Gæt ét bogstav</label>
+            <br>
+            <input type="text" name="guess_word" id="letter" maxlength="1" required>
+            <br>
+            <button class="list_button" onclick="guess()">Gæt</button>
+            <br>
+        </div>
+        <div class="word_used">
+            Bogstav som er brugt: <a id="used"></a>
+        </div>
     </div>
 </div>
 

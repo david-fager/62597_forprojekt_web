@@ -77,3 +77,52 @@ function getUserInfo() {
             document.getElementById("AOBI").innerText = data[1].adgangskode;
         });
 }
+
+function gameInfo() {
+    fetch(window.location.href+'/info')
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+
+            document.getElementById("guess").innerText = data[0];
+            document.getElementById("used").innerText = data[1];
+
+            if (data[4] === "true"){
+                endgame();
+            }
+
+
+
+        });
+}
+
+function showresult() {
+
+    fetch(window.location.href+'../info')
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+            if (data[5] === "true"){
+                <!-- document.getElementById() -->
+                <!--vundet-->
+            } else {
+                <!--tabt-->
+            }
+        });
+
+}
+
+function endgame() {
+    window.location.href = window.location.href + '/result';
+}
+
+function guess() {
+    let guess = document.getElementById("letter").value;
+    fetch(window.location.href + '/' + guess)
+        .then((response) => response.status)
+        .then(function (data) {
+            console.log(data);
+            gameInfo();
+            // TODO: Handle the status code for whether server had problems or not
+        });
+}

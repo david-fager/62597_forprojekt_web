@@ -2,29 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <title>GAGLELEG</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="script.js"></script>
+    <link href="/./style.css" rel="stylesheet" type="text/css">
+    <script src="/./script.js"></script>
 </head>
 <body alink="#7fff00">
 
 <div class="page">
     <div id="login-page-content">
+        <img class="img" src="hangman_logo.png" height="35" width="35" >
         <h1>Galgeleg</h1>
         <h2>Log ind</h2>
         <h6 id="login-error" style="color: red;"></h6>
         <form action="javascript:login()">
-            <label>Brugernavn</label>
+            <label class="text_style">Brugernavn</label>
             <br>
             <input type="text" name="username" id="username" required>
             <br>
-            <label>Kodeord</label>
+            <br>
+            <label class="text_style">Kodeord</label>
             <br>
             <input type="password" name="password" id="password" required>
             <br>
-            <div class="container">
+            <div>
                 <span class="glemt">Glemt <a href="glemtLogin.html" style="color: black">kodeord?</a></span>
             </div>
-            <button>Log in</button>
+            <br>
+            <button class="list_button">Log in</button>
         </form>
     </div>
 </div>
