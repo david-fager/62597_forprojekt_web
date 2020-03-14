@@ -277,8 +277,13 @@ public class Server {
             String oldPassword = context.pathParam("oldPassword");
             String newPassword = context.queryParam("newPassword");
 
-            Bruger result = javaprogram.changePassword(sesID, oldPassword, newPassword);
-            context.json(result);
+            Bruger bruger = javaprogram.changePassword(sesID, oldPassword, newPassword);
+            if (bruger != null) {
+
+                context.status(HttpStatus.ACCEPTED_202);
+            } else {
+                context.status(HttpStatus.SERVICE_UNAVAILABLE_503);
+            }
         });
 
     }

@@ -36,7 +36,7 @@ function sendData() {
 }
 
 function forgotlogin() {
-    let username = document.getElementById("username").value;
+    let username = document.getElementById("username2").value;
     let message = document.getElementById("message").value;
     fetch("/login/forgot/" + username + "?message=" + message)
         .then((response) => response.status)
@@ -62,7 +62,22 @@ function standardGame() {
 }
 
 function changePassword() {
+    let oldpassword = document.getElementById("oldpassword").value;
+    let newpassword = document.getElementById("newpassword").value;
+    fetch('/account/changePassword/' + oldpassword + "?newPassword=" + newpassword)
+        .then((response) => response.status)
+        .then(function (data) {
+            console.log(data);
+            if (data === 202) {
+                window.location.href = '/./';
+            } else if (data === 503) {
+                <!-- fejl! -->
+            }
+        });
+}
 
+function menu() {
+    window.location.href = '/menu';
 }
 
 function getUserInfo() {
@@ -90,9 +105,6 @@ function gameInfo() {
             if (data[4] === "true"){
                 endgame();
             }
-
-
-
         });
 }
 
@@ -104,10 +116,9 @@ function showresult() {
         .then(function (data) {
             console.log(data);
             if (data[5] === "true"){
-                <!-- document.getElementById() -->
-                <!--vundet-->
+                document.getElementById("results").innerText = "vundet";
             } else {
-                <!--tabt-->
+                document.getElementById("results").innerText = "tabt";
             }
         });
 
@@ -126,4 +137,5 @@ function guess() {
             gameInfo();
             // TODO: Handle the status code for whether server had problems or not
         });
+    document.getElementById("guess").value = "";
 }

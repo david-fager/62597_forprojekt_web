@@ -10,24 +10,14 @@
 <div class="page">
     <div id="login-page-content">
         <img class="img" src="hangman_logo.png" height="35" width="35" >
+        <br>
+        <br>
         <h1>Galgeleg</h1>
-        <h2>Log ind</h2>
-        <form action="javascript:void(0);">
-            <label class="text_style">Brugernavn</label>
-            <br>
-            <input type="text" name="username" id="username" required>
-            <br>
-            <br>
-            <label class="text_style">Kodeord</label>
-            <br>
-            <input type="password" name="password" id="password" required>
-            <br>
-            <div>
-                <span class="glemt">Glemt <a href="" style="color: black">kodeord?</a></span>
-            </div>
-            <br>
-            <button class="list_button">Log in</button>
-        </form>
+        <br>
+        Du har <a id="results" onload="showresult()"></a>
+        <br>
+        <br>
+        <button class="list_button" onclick="menu()">Tilbage til startsiden</button>
     </div>
 </div>
 
