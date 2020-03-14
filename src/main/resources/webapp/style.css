@@ -39,53 +39,12 @@
     text-align: center;
 }
 
-.mid{
-    width: 500px;
-    height: 500px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.davidprutprutprut{
-    width: 500px;
-    height: 100px;
-}
-
-.login_container{
-    width: 100%;
-}
-
 .img{
     left: 50%;
     top: 10%;
     position: fixed;
     transform: translate(-50%,-50%);
     display: inline-block;
-}
-
-.header{
-    left: 50%;
-    text-align: center;
-    position: fixed;
-    transform: translate(-50%,0);
-    font-family: Bahnschrift;
-    display: inline-block;
-}
-
-.header2{
-    font-family: Bahnschrift;
-    width: 200px;
-}
-
-
-.introduction {
-    left: 50%;
-    position: fixed;
-    transform: translate(-50%,0);
-    width: 190px;
-    font-size: smaller;
 }
 
 .list_button{
@@ -102,39 +61,6 @@
     color: white;
     cursor:pointer;
 }
-
-.button{
-    background-color: white;
-    border-radius: 0px;
-    width: 165px;
-    height: 30px;
-    cursor:pointer;
-}
-
-.button:hover{
-    background-color: black;
-    color: white;
-    cursor:pointer;
-}
-
-.login{
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    font-family: Bahnschrift;
-    background-color: white;
-    border-radius: 0px;
-    width: 165px;
-    height: 30px;
-}
-
-
-.login:hover{
-    background-color: black;
-    color: white;
-    cursor:pointer;
-}
-
 
 .glemt{
     font-family: Bahnschrift;
@@ -204,41 +130,6 @@
 
 }
 
-.konto_left{
-    width: 500px;
-    height: 500px;
-    position: fixed;
-    left: 10%;
-    top: 45%;
-}
-
-.konto_right{
-    width: 500px;
-    height: 500px;
-    position: fixed;
-    left: 10%;
-    top: 45%;
-}
-
-.container{
-    font-family: Bahnschrift;
-    text-align: center;
-    width: 200px;
-    height: 200px;
-    position: fixed;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-}
-
-.container h1{
-    margin-bottom: 10px;
-}
-
-.container a{
-    margin-bottom: 15px;
-}
-
 .text_style {
     font-family: Bahnschrift;
     font-weight: bold;
@@ -249,7 +140,7 @@
     color: red;
 }
 
-.skiftadgangskode{
+.changepassword{
     text-align: center;
     text-decoration: underline dotted;
 }
