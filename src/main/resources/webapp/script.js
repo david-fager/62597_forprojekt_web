@@ -1,5 +1,19 @@
 let hejNumber = 0;
 
+function toast() {
+    fetch('/account/info')
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+
+            <!-- makes a little toast for a recognized person -->
+            let toastDIV = document.getElementById("toast");
+            toastDIV.innerText = "Velkommen " + data[0].fornavn + " " + data[0].efternavn;
+            toastDIV.className = "show";
+            setTimeout(function (){toastDIV.className = toastDIV.className.replace("show", "")}, 3000);
+        });
+}
+
 // For GETting specific website data from java REST
 function getHej() {
     fetch('./hej')
