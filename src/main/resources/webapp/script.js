@@ -1,5 +1,3 @@
-let hejNumber = 0;
-
 function toast() {
     fetch('/account/info')
         .then((response) => response.json())
@@ -11,16 +9,6 @@ function toast() {
             toastDIV.innerText = "Velkommen " + data[0].fornavn + " " + data[0].efternavn;
             toastDIV.className = "show";
             setTimeout(function (){toastDIV.className = toastDIV.className.replace("show", "")}, 3000);
-        });
-}
-
-// For GETting specific website data from java REST
-function getHej() {
-    fetch('./hej')
-        .then((response) => response.json())
-        .then(function (data) {
-            console.log(data);
-            document.getElementById("response").innerHTML = data + " " + ++hejNumber;
         });
 }
 
@@ -36,16 +24,6 @@ function login() {
             } else if (data === 401) {
                 document.getElementById("login-error").innerHTML = "Forkert brugernavn eller adgangskode.";
             }
-        });
-}
-
-function sendData() {
-    let tekst1 = document.getElementById("tekst1").value
-    let tekst2 = document.getElementById("tekst2").value
-    fetch("/send/" + tekst1 + "?tekst2=" + tekst2)
-        .then((response) => response.json())
-        .then(function (data) {
-            console.log(data);
         });
 }
 
@@ -177,4 +155,9 @@ function guess() {
             // TODO: Handle the status code for whether server had problems or not
         });
     document.getElementById("letter").value = "";
+}
+
+function logout() {
+    document.cookie = "sessionID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = "./";
 }
