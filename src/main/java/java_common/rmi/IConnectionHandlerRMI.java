@@ -19,6 +19,8 @@ public interface IConnectionHandlerRMI extends java.rmi.Remote {
 
     ArrayList<String> getUsedLetters(int sesID) throws java.rmi.RemoteException;
 
+    int numberWrongGuesses(int sesID);
+
     String getWord(int sesID) throws java.rmi.RemoteException;
 
     int informConnect() throws java.rmi.RemoteException;

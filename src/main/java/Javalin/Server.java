@@ -198,6 +198,9 @@ public class Server {
             int sesID = context.cookieStore("sessionID");
             String visibleWord = javaprogram.getVisibleWord(sesID);
             String actualWord = javaprogram.getWord(sesID);
+            String numberWrongGuesses = String.valueOf(javaprogram.numberWrongGuesses(sesID));
+            String isGameOver = String.valueOf(javaprogram.isGameOver(sesID));
+            String didPlayerWin = String.valueOf(javaprogram.didPlayerWin(sesID));
 
             // Build the string of used letters (a, b, c)
             ArrayList<String> letters = javaprogram.getUsedLetters(sesID);
@@ -209,7 +212,7 @@ public class Server {
                 usedletters = letters.get(letters.size() - 1);
             }
 
-            String[] info = {visibleWord, usedletters, actualWord};
+            String[] info = {visibleWord, usedletters, actualWord, numberWrongGuesses, isGameOver, didPlayerWin};
             context.json(info);
         });
 
