@@ -268,13 +268,13 @@ public class Server {
         });
 
         // BUTTON: CHANGE PASSWORD REQUEST - the path to send a form to change password
-        app.get("/account/changePassword", context -> {
+        app.get("/account/changePassword/:oldPassword", context -> {
             if (context.cookieStore("sessionID") == null) {
                 context.status(HttpStatus.UNAUTHORIZED_401).result("<h1>401 Unauthorized</h1>You are not authorized to see this page.").contentType("text/html");
             }
 
             int sesID = context.cookieStore("sessionID");
-            String oldPassword = context.queryParam("oldPassword");
+            String oldPassword = context.pathParam("oldPassword");
             String newPassword = context.queryParam("newPassword");
 
             Bruger result = javaprogram.changePassword(sesID, oldPassword, newPassword);
